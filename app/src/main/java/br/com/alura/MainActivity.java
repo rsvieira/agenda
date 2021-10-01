@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
             pessoas.add("Ramon");
             pessoas.add("Luana");
             pessoas.add("Barney");
-            pessoas.add("Agnes");
+//            pessoas.add("Agnes");
 
         ListView listaPessoas = findViewById(R.id.pessoas);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, pessoas);
