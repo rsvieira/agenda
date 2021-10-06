@@ -1,21 +1,24 @@
 package br.com.alura;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+import br.com.alura.helper.FormularioActivityHelper;
+import br.com.alura.model.Pessoa;
 
 public class FormularioActivity extends AppCompatActivity {
+
+    private FormularioActivityHelper formularioActivityHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
+        formularioActivityHelper = new FormularioActivityHelper(this);
     }
 
     @Override
@@ -24,11 +27,14 @@ public class FormularioActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.menu_formulario_ok:
-                Toast.makeText(FormularioActivity.this, "Aluno salvo!", Toast.LENGTH_SHORT).show();
+                Pessoa pessoa = formularioActivityHelper.getPessoa();
+                Toast.makeText(FormularioActivity.this, "Aluno " + pessoa.getNome() +" salvo!", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
         }
