@@ -7,7 +7,7 @@
 
     <ListView android:layout_height="match_parent"
               android:layout_width="match_parent"
-              android:id="@+id/pessoas"
+              android:id="@+id/lista_pessoas"
     />
 
     <Button android:layout_width="56dp"

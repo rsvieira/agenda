@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import br.com.alura.dao.PessoaDAO;
 import br.com.alura.helper.FormularioActivityHelper;
 import br.com.alura.model.Pessoa;
 
@@ -34,7 +35,13 @@ public class FormularioActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_formulario_ok:
                 Pessoa pessoa = formularioActivityHelper.getPessoa();
+                PessoaDAO pessoaDAO = new PessoaDAO(this);
+
+                pessoaDAO.insere(pessoa);
+                pessoaDAO.close();
+
                 Toast.makeText(FormularioActivity.this, "Aluno " + pessoa.getNome() +" salvo!", Toast.LENGTH_SHORT).show();
+
                 finish();
                 break;
         }

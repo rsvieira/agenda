@@ -4,11 +4,20 @@ package br.com.alura.model;
  * @author devrsvieira
  */
 public class Pessoa {
+    private Long id;
     private String nome;
     private String endereco;
     private String telefone;
     private String site;
     private Double nota;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -49,6 +58,12 @@ public class Pessoa {
     public void setNota(Double nota) {
         this.nota = nota;
     }
+
+    @Override
+    public String toString() {
+        return id + " - " + nome;
+    }
+
 }
 
 
