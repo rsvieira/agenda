@@ -18,6 +18,7 @@ public class FormularioActivityHelper {
     private final EditText campoSite;
     private final RatingBar campoNota;
 
+    private Pessoa pessoa;
 
     public FormularioActivityHelper(FormularioActivity formularioActivity) {
         campoNome = formularioActivity.findViewById(R.id.formulario_nome);
@@ -25,10 +26,10 @@ public class FormularioActivityHelper {
         campoTelefone = formularioActivity.findViewById(R.id.formulario_telefone);
         campoSite = formularioActivity.findViewById(R.id.formulario_site);
         campoNota = formularioActivity.findViewById(R.id.formulario_nota);
+        pessoa = new Pessoa();
     }
 
     public Pessoa getPessoa(){
-        Pessoa pessoa = new Pessoa();
             pessoa.setNome(campoNome.getText().toString());
             pessoa.setEndereco(campoEndereco.getText().toString());
             pessoa.setTelefone(campoTelefone.getText().toString());
@@ -37,4 +38,12 @@ public class FormularioActivityHelper {
         return pessoa;
     }
 
+    public void preencheFormulario(Pessoa pessoa){
+        campoNome.setText(pessoa.getNome());
+        campoEndereco.setText(pessoa.getEndereco());
+        campoTelefone.setText(pessoa.getTelefone());
+        campoSite.setText(pessoa.getSite());
+        campoNota.setProgress(pessoa.getNota().intValue());
+        this.pessoa = pessoa;
+    }
 }

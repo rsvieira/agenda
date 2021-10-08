@@ -1,9 +1,12 @@
 package br.com.alura.model;
 
+import java.io.Serializable;
+
 /**
  * @author devrsvieira
  */
-public class Pessoa {
+public class Pessoa implements Serializable {
+
     private Long id;
     private String nome;
     private String endereco;
