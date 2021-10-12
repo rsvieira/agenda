@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.com.alura.dao.PessoaDAO;
 import br.com.alura.helper.FormularioActivityHelper;
 import br.com.alura.model.Pessoa;
+import br.com.alura.validador.PessoaValidador;
 
 public class FormularioActivity extends AppCompatActivity {
 
@@ -48,15 +49,21 @@ public class FormularioActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_formulario_ok:
                 Pessoa pessoa = formularioActivityHelper.getPessoa();
-                if(pessoa.getId() != null){
-                    pessoaDAO.alteraPessoa(pessoa);
-                    Toast.makeText(FormularioActivity.this, pessoa.getNome() +" foi alterado(a)!", Toast.LENGTH_SHORT).show();
-                } else {
-                    pessoaDAO.insere(pessoa);
-                    Toast.makeText(FormularioActivity.this, pessoa.getNome() +" foi criado(a)!", Toast.LENGTH_SHORT).show();
-                }
-                finish();
+
+            if(!PessoaValidador.validador(pessoa).isStatus()){
+                Toast.makeText(FormularioActivity.this, "Campo " +PessoaValidador.validador(pessoa).getCampoInvalido()+ " precisa ser preenchido.", Toast.LENGTH_SHORT).show();
                 break;
+            }
+
+            if(pessoa.getId() != null){
+                pessoaDAO.alteraPessoa(pessoa);
+                Toast.makeText(FormularioActivity.this, pessoa.getNome() +" foi alterado(a)!", Toast.LENGTH_SHORT).show();
+            } else {
+                pessoaDAO.insere(pessoa);
+                Toast.makeText(FormularioActivity.this, pessoa.getNome() +" foi criado(a)!", Toast.LENGTH_SHORT).show();
+            }
+            finish();
+            break;
         }
         return super.onOptionsItemSelected(item);
     }

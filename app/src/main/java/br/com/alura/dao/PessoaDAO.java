@@ -55,7 +55,7 @@ public class PessoaDAO extends SQLiteOpenHelper {
         StringBuilder sql = new StringBuilder();
         SQLiteDatabase db = getWritableDatabase();
 
-        sql.append("SELECT * FROM pessoa");
+        sql.append("SELECT * FROM pessoa ORDER BY nome asc");
         Cursor c = db.rawQuery(sql.toString(), null);
 
         while(c.moveToNext()){
